@@ -1,11 +1,13 @@
 require('dotenv').config()
+
+const mongoose = require('mongoose')
 const express = require('express')
+const travelRoutes = require('./routes/travel')
 //express 
+
 const myapp = express()
 
 myapp.use(express.json())
-
-const travelRoutes = require('./routes/travel')
 
 myapp.use((req,res,next) => {
     console.log(req.path, req.method)
@@ -13,7 +15,19 @@ myapp.use((req,res,next) => {
 })
 
 //routes for travel
-myapp.use('/api/travel',travelRoutes);
+myapp.use('/api/travel',travelRoutes)
 
-myapp.listen(process.env.PORT,()=>{console.log("You look Lonely", process.env.PORT);})
+//connect database
+mongoose.connect(process.env.MONGO_URI)
+    .then(()=>{
+        //request
+        myapp.listen(process.env.PORT, () => {
+          console.log("You look Lonely", process.env.PORT);
+        });
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+
+
 

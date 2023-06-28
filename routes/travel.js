@@ -1,6 +1,7 @@
 const express = require("express")
 
 const router = express.Router()
+
 //Get all
 router.get('/',(req,res) => {
     res.json({mssg:'Get all the Travel Info'})
@@ -19,4 +20,5 @@ router.delete("/", (req, res) => {
 router.patch("/", (req, res) => {
   res.json({ mssg: "Update a Travel" });
 });
+
 module.exports = router 
