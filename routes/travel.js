@@ -1,5 +1,5 @@
 const express = require("express")
-const Travel = require('../models/travelmodel')
+const {createTravel} = require("../controllers/travelControllers")
 const router = express.Router()
 
 //Get all
@@ -13,16 +13,7 @@ router.get('/:id',(req,res)=>{
 })
 
 //POST
-router.post('/',async (req,res) =>{
-    const {place,from,to,experience} = req.body
-
-    try{
-      const travel = await Travel.create({ place, from, to, experience });
-      res.status(200).json(travel)
-      } catch(error){
-      res.status(400).json({error: error.message});
-    }
-})
+router.post('/', createTravel)
 
 router.delete("/", (req, res) => {
   res.json({ mssg: "Delete a Travel" });
