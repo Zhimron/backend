@@ -1,26 +1,25 @@
-const express = require("express")
-const {createTravel} = require("../controllers/travelControllers")
-const router = express.Router()
+const express = require("express");
+const {
+  createTravel,
+  getTravel,
+  getTravels,
+  deleteTravel,
+  updateTravel,
+} = require("../controllers/travelControllers");
+
+const router = express.Router();
 
 //Get all
-router.get('/',(req,res) => {
-    res.json({mssg:'Get all the Travel Info'})
-})
+router.get("/", getTravels);
 
 //Get single
-router.get('/:id',(req,res)=>{
-    res.json({mssg:'Get specific Travel'})
-})
+router.get("/:id", getTravel);
 
 //POST
-router.post('/', createTravel)
+router.post("/", createTravel);
 
-router.delete("/", (req, res) => {
-  res.json({ mssg: "Delete a Travel" });
-});
+router.delete("/:id", deleteTravel);
 
-router.patch("/", (req, res) => {
-  res.json({ mssg: "Update a Travel" });
-});
+router.patch("/:id", updateTravel);
 
-module.exports = router 
+module.exports = router;
