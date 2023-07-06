@@ -14,6 +14,7 @@ const getTravel = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No Travel Id" });
   }
+
   const travel = await Travel.findById(id);
 
   if (!travel) {
