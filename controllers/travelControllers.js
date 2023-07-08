@@ -1,4 +1,5 @@
 const Travel = require("../models/travelmodel");
+const cloudinary = require("../utils/uploadimg")
 const mongoose = require("mongoose");
 
 //get all travels
@@ -25,9 +26,18 @@ const getTravel = async (req, res) => {
 
 //create
 const createTravel = async (req, res) => {
-  const { place, from, to, experience } = req.body;
+  
+  const { place, from, to, experience, image } = req.body;
   try {
-    const travel = await Travel.create({ place, from, to, experience });
+    const result = await cloudinary.uploader.upload(image,{
+      folder: images,
+      width: 300,
+      crop: "scale"
+    });
+    const travel = await Travel.create({ place, from, to, experience, image:{
+      public_id: result.public_id,
+      url: result.secure_url
+    } });
     res.status(200).json(travel);
   } catch (error) {
     res.status(400).json({ error: error.message });
