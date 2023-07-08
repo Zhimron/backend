@@ -20,16 +20,7 @@ const travelSchema = new Schema(
       type: String,
       require: true,
     },
-    image: {
-      public_id:{
-        type: String,
-        required: true
-      },
-      url:{
-        type:String,
-        required:true
-      }
-    },
+    
   },
   { timestamps: true }
 );

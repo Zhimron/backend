@@ -4,10 +4,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const express = require("express");
 const travelRoutes = require("./routes/travel");
+const cloudinary = require("./utils/uploadimg");
 //express
 const myapp = express();
 myapp.use(cors());
-
 myapp.use(express.json());
 
 myapp.use((req, res, next) => {

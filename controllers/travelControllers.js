@@ -27,17 +27,9 @@ const getTravel = async (req, res) => {
 //create
 const createTravel = async (req, res) => {
   
-  const { place, from, to, experience, image } = req.body;
+  const { place, from, to, experience } = req.body;
   try {
-    const result = await cloudinary.uploader.upload(image,{
-      folder: images,
-      width: 300,
-      crop: "scale"
-    });
-    const travel = await Travel.create({ place, from, to, experience, image:{
-      public_id: result.public_id,
-      url: result.secure_url
-    } });
+    const travel = await Travel.create({ place, from, to, experience,});
     res.status(200).json(travel);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -50,7 +42,7 @@ const deleteTravel = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No Travel Id" });
   }
-  const travel = await Travel.findOneAndDelete(id);
+  const travel = await Travel.findOneAndDelete( {_id:id});
 
   if (!travel) {
     return res.status(404).json({ error: "No Record of Travel" });
