@@ -1,5 +1,5 @@
 const Travel = require("../models/travelmodel");
-const cloudinary = require("../utils/uploadimg")
+const cloudinary = require("../utils/uploadimg");
 const mongoose = require("mongoose");
 
 //get all travels
@@ -26,10 +26,9 @@ const getTravel = async (req, res) => {
 
 //create
 const createTravel = async (req, res) => {
-  
   const { place, from, to, experience } = req.body;
   try {
-    const travel = await Travel.create({ place, from, to, experience,});
+    const travel = await Travel.create({ place, from, to, experience });
     res.status(200).json(travel);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -42,12 +41,12 @@ const deleteTravel = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No Travel Id" });
   }
-  const travel = await Travel.findOneAndDelete( {_id:id});
+  const travel = await Travel.findOneAndDelete({ _id: id });
 
   if (!travel) {
     return res.status(404).json({ error: "No Record of Travel" });
   }
-  res.status(200).json({ travel });
+  res.status(200).json(travel);
 };
 
 //update
@@ -62,7 +61,7 @@ const updateTravel = async (req, res) => {
   if (!travel) {
     return res.status(404).json({ error: "No Record of Travel" });
   }
-  res.status(200).json({ travel });
+  res.status(200).json(travel);
 };
 
 module.exports = {
