@@ -20,7 +20,10 @@ const travelSchema = new Schema(
       type: String,
       require: true,
     },
-    
+    archive: {
+      type: String,
+      default: "Active",
+    },
   },
   { timestamps: true }
 );

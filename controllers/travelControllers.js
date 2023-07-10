@@ -4,7 +4,15 @@ const mongoose = require("mongoose");
 
 //get all travels
 const getTravels = async (req, res) => {
-  const travel = await Travel.find({}).sort({ createdAt: -1 });
+  const travel = await Travel.find({ archive: "Active" }).sort({
+    createdAt: -1,
+  });
+  res.status(200).json(travel);
+};
+const getTravelArchive = async (req, res) => {
+  const travel = await Travel.find({ archive: "Not Active" }).sort({
+    createdAt: -1,
+  });
   res.status(200).json(travel);
 };
 
@@ -21,7 +29,7 @@ const getTravel = async (req, res) => {
   if (!travel) {
     return res.status(404).json({ error: "No Record of Travel" });
   }
-  res.status(200).json({ travel });
+  res.status(200).json(travel);
 };
 
 //create
@@ -70,4 +78,5 @@ module.exports = {
   createTravel,
   deleteTravel,
   updateTravel,
+  getTravelArchive,
 };
