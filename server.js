@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const express = require("express");
 const travelRoutes = require("./routes/travel");
-const cloudinary = require("./utils/uploadimg");
+// const cloudinary = require("./utils/uploadimg");
 //express
 const myapp = express();
 myapp.use(cors());

@@ -1,5 +1,5 @@
 const Travel = require("../models/travelmodel");
-const cloudinary = require("../utils/uploadimg");
+// const cloudinary = require("../utils/uploadimg");
 const mongoose = require("mongoose");
 
 //get all travels

@@ -3,11 +3,14 @@ const Schema = mongoose.Schema;
 
 const travelSchema = new Schema(
   {
+    user: {
+      type: String,
+      require: true,
+    },
     place: {
       type: String,
       require: true,
     },
-
     from: {
       type: String,
       require: true,
